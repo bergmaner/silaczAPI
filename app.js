@@ -13,6 +13,8 @@ require("dotenv").config();
 const app = express();
 
 const authRoutes = require("./routes/auth");
+const trainingRoutes = require("./routes/training");
+const excerciseRoutes = require("./routes/excercise");
 
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -31,6 +33,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(cors());
 app.use("/api", authRoutes);
+app.use("/api", trainingRoutes);
+app.use("/api", excerciseRoutes);
 
 const port = process.env.PORT || 8000;
 
